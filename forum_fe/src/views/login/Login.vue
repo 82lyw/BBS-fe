@@ -37,15 +37,15 @@
 </template>
 
 <script>
-import BasicPanel from "@components/common/panel/BasicPanel";
-import { login } from "@network/login";
+import BasicPanel from '@components/common/panel/BasicPanel'
+import { login } from '@network/login'
 export default {
-  name: "login",
+  name: 'login',
   data() {
     return {
-      email: "",
-      password: ""
-    };
+      email: '',
+      password: ''
+    }
   },
   components: {
     BasicPanel
@@ -54,24 +54,24 @@ export default {
     // 登录
     submit() {
       if (!this.email || !this.password) {
-        alert("登录邮箱或密码不能为空");
-        return;
+        alert('登录邮箱或密码不能为空')
+        return
       }
       login(this.email, this.password).then(res => {
-        if (res.data.msg == "ok") {
-          alert("登录成功");
+        if (res.data.msg == 'ok') {
+          alert('登录成功')
           // 储存token到本地
-          localStorage.setItem("token", "Bearer " + res.data.token);
+          localStorage.setItem('token', 'Bearer ' + res.data.token)
           // 提交用户数据到vuex
-          this.$store.commit("setUser", res.data.user);
-          this.$router.replace("/");
+          this.$store.commit('setUser', res.data.user)
+          this.$router.replace('/')
         } else {
-          alert("登录失败，请检查登录邮箱或密码是否正确");
+          alert('登录失败，请检查登录邮箱或密码是否正确')
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

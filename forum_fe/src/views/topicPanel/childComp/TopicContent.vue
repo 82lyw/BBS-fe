@@ -5,17 +5,17 @@
 </template>
 
 <script>
-  export default {
-    name: 'topic-content',
-    props: {
-      topicContent: String
-    }
+export default {
+  name: 'topic-content',
+  props: {
+    topicContent: String
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  @import url("~@assets/css/text.css");
-  .topic-content{
-    margin-top: 10px;
-  }
+@import url('~@assets/css/text.css');
+.topic-content {
+  margin-top: 10px;
+}
 </style>

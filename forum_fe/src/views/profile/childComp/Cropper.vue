@@ -17,18 +17,18 @@
 </template>
 
 <script>
-import { VueCropper } from "vue-cropper";
+import { VueCropper } from 'vue-cropper'
 
 export default {
-  name: "cropper",
+  name: 'cropper',
   components: {
     VueCropper
   },
   data() {
     return {
       option: {
-        img: "",
-        outputType: "jpeg",
+        img: '',
+        outputType: 'jpeg',
         outputSize: 1,
         autoCrop: true,
         centerBox: true,
@@ -38,24 +38,24 @@ export default {
         autoCropWidth: 150,
         autoCropHeight: 150,
         // eslint-disable-next-line no-dupe-keys
-        outputType: "jpeg"
+        outputType: 'jpeg'
       }
-    };
+    }
   },
   methods: {
     // 供父元素调用的方法：截图并发送预览图
     getCropData() {
       this.$refs.cropper.getCropBlob(blob => {
         // console.log(`截图压缩前:${blob.size/1000}KB`)
-        this.$emit("preview", blob);
-      });
+        this.$emit('preview', blob)
+      })
     },
     // 供父元素调用的方法：获取base64原始图片并展示，供用户截图
     getImg(img) {
-      this.option.img = img;
+      this.option.img = img
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

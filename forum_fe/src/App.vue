@@ -13,15 +13,15 @@
 
 <script>
 // 引入首页三个主要组件，其中主组件使用路由
-import IndexHeader from "@views/indexHeader/IndexHeader.vue";
-import IndexAside from "@views/indexAside/IndexAside.vue";
-import IndexFooter from "@views/indexFooter/IndexFooter.vue";
+import IndexHeader from '@views/indexHeader/IndexHeader.vue'
+import IndexAside from '@views/indexAside/IndexAside.vue'
+import IndexFooter from '@views/indexFooter/IndexFooter.vue'
 
 // 每次刷新页面，都向服务器请求登录
-import { getUser } from "@network/login.js";
+import { getUser } from '@network/login.js'
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     IndexHeader,
     IndexAside,
@@ -29,14 +29,14 @@ export default {
   },
   mounted() {
     // 获取登录信息
-    getUser.call(this);
+    getUser.call(this)
   }
-};
+}
 </script>
 
 <style lang="scss">
 /* 此处一定要加上~，在dom中使用也要加~ */
-@import url("~@assets/css/normalize.css");
+@import url('~@assets/css/normalize.css');
 
 // pc端
 @media (min-width: $action-width) {

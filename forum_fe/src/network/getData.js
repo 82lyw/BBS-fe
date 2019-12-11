@@ -1,5 +1,5 @@
 // 客户端
-import {request} from './request.js'
+import { request } from './request.js'
 
 // 根据id和tag显示文章列表
 function getTopics(page, tag) {
@@ -22,7 +22,7 @@ function getTopic(topic_id) {
   })
 }
 
-function searchTopics(str, page=1) {
+function searchTopics(str, page = 1) {
   return request({
     url: '/api/search',
     params: {
@@ -32,4 +32,4 @@ function searchTopics(str, page=1) {
   })
 }
 
-export {getTopics, getTopic, searchTopics}
+export { getTopics, getTopic, searchTopics }

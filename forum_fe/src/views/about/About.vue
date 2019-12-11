@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import BasicPanel from "@components/common/panel/BasicPanel";
+import BasicPanel from '@components/common/panel/BasicPanel'
 
 export default {
-  name: "about",
+  name: 'about',
   components: {
     BasicPanel
   }
-};
+}
 </script>
 
 <style></style>

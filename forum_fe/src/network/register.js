@@ -1,10 +1,10 @@
-import {request} from './request.js'
+import { request } from './request.js'
 
 // 验证邮箱或用户名是否存在
-function testExist({key, value}) {
+function testExist({ key, value }) {
   return request({
     url: '/api/testexist',
-    params: {key, value}
+    params: { key, value }
   })
 }
 

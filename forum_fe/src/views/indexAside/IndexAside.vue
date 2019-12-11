@@ -76,14 +76,14 @@
 </template>
 
 <script>
-import BasicPanel from "@components/common/panel/BasicPanel.vue";
+import BasicPanel from '@components/common/panel/BasicPanel.vue'
 // import BasicBanner from "@components/common/banner/BasicBanner.vue";
-import { baseURL } from "@network/request.js";
+import { baseURL } from '@network/request.js'
 
 export default {
-  name: "index-aside",
+  name: 'index-aside',
   data() {
-    return {};
+    return {}
   },
   components: {
     BasicPanel
@@ -91,40 +91,40 @@ export default {
   },
   methods: {
     router(path) {
-      if (this.$route.path == path) return;
-      this.$router.replace(path);
+      if (this.$route.path == path) return
+      this.$router.replace(path)
     },
     create() {
       if (this.$store.state.user.username) {
-        this.router("/create");
+        this.router('/create')
       } else {
-        alert("请先登录");
-        if (this.$route.path != "/login") this.$router.push("/login");
+        alert('请先登录')
+        if (this.$route.path != '/login') this.$router.push('/login')
       }
     },
     profile() {
       if (this.$store.state.user.username) {
-        this.router("/profile");
+        this.router('/profile')
       }
     },
     login() {
-      this.router("/login");
+      this.router('/login')
     }
   },
   computed: {
     // 判断是否登录
     isLogin() {
-      if (this.$store.state.user.username) return true;
-      else return false;
+      if (this.$store.state.user.username) return true
+      else return false
     },
     // 计算头像src
     avatarSrc() {
       if (this.$store.state.user.avatar) {
-        return baseURL + "/uploads/face/" + this.$store.state.user.avatar;
-      } else return baseURL + "/public/img/default/avatar-default.png";
+        return baseURL + '/uploads/face/' + this.$store.state.user.avatar
+      } else return baseURL + '/public/img/default/avatar-default.png'
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

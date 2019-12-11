@@ -1,48 +1,48 @@
-import axios from "axios";
+import axios from 'axios'
 
-// const baseURL = 'http://101.132.237.93'
-const baseURL = "http://localhost:8888";
+const baseURL = 'http://101.132.237.93'
+// const baseURL = 'http://localhost:8888'
 
-export { baseURL };
+export { baseURL }
 export function request(config) {
   // 创建axios实例
   const instance = axios.create({
     baseURL,
     timeout: 5000
-  });
+  })
   // 请求拦截,在headers上加上token
   instance.interceptors.request.use(
     config => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token')
       if (token) {
-        config.headers.Authorization = token;
+        config.headers.Authorization = token
       }
-      return config;
+      return config
     },
     err => {
-      console.log(err);
-      console.log("请求失败");
+      console.log(err)
+      console.log('请求失败')
     }
-  );
+  )
 
   // 响应拦截
   instance.interceptors.response.use(
     res => {
       if (res.data.msg) {
-        if (res.data.msg === "login") {
-          alert("请登录再试");
-          location.reload();
+        if (res.data.msg === 'login') {
+          alert('请登录再试')
+          location.reload()
         }
       }
       // 必须返回
-      return res;
+      return res
     },
     err => {
-      console.log(err);
-      console.log("响应失败");
+      console.log(err)
+      console.log('响应失败')
     }
-  );
+  )
 
   // 发送网络请求,返回一个promise
-  return instance(config);
+  return instance(config)
 }

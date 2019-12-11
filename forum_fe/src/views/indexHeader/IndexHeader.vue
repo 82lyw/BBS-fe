@@ -46,75 +46,75 @@
 
 <script>
 export default {
-  name: "index-header",
+  name: 'index-header',
   data() {
     return {
       // 搜索内容
       searchText: null,
       // 是否显示菜单栏
       isNavShow: true
-    };
+    }
   },
   created() {
     // 如果是手机端，则默认不显示菜单栏
-    var isMobile = matchMedia("(max-width: 825px)").matches;
-    if (isMobile) this.isNavShow = false;
+    var isMobile = matchMedia('(max-width: 825px)').matches
+    if (isMobile) this.isNavShow = false
   },
   methods: {
     // 统一使用replace
     router(path) {
-      if (this.$route.path == path) return;
-      this.$router.replace(path);
+      if (this.$route.path == path) return
+      this.$router.replace(path)
     },
     // 跳转到登录页
     login() {
-      if (this.$route.path == "/login") return;
+      if (this.$route.path == '/login') return
       this.$router.replace({
-        name: "login"
-      });
+        name: 'login'
+      })
     },
     // 跳转到注册页
     register() {
-      this.router("/register");
+      this.router('/register')
     },
     // 返回首页
     GotoIndex() {
-      this.router("/");
+      this.router('/')
     },
     // 跳转到测试页
     test() {
-      this.router("/test");
+      this.router('/test')
     },
     // 跳转到关于页
     about() {
-      this.router("/about");
+      this.router('/about')
     },
     // 登出
     logout() {
-      localStorage.removeItem("token");
-      this.$store.commit("logout");
+      localStorage.removeItem('token')
+      this.$store.commit('logout')
     },
     // 我的
     my() {
-      this.router("/profile");
+      this.router('/profile')
     },
     // 搜索
     search() {
       if (!this.searchText) {
-        this.$router.push("/");
+        this.$router.push('/')
       } else if (this.$route.params.query != this.searchText) {
         this.$router.push({
-          name: "search",
+          name: 'search',
           params: { query: this.searchText }
-        });
+        })
       }
     },
     // 展示或隐藏移动端的菜单栏
     menu() {
-      this.isNavShow = !this.isNavShow;
+      this.isNavShow = !this.isNavShow
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -150,7 +150,7 @@ $bgc: #b3d8ff;
   box-sizing: border-box;
   padding: 0 70px 0 70px;
   &::after {
-    content: "";
+    content: '';
     display: block;
     clear: left;
   }
@@ -165,7 +165,7 @@ $bgc: #b3d8ff;
   height: 50px;
   width: 50px;
   cursor: pointer;
-  background: url("~@assets/img/logo.png") no-repeat center center;
+  background: url('~@assets/img/logo.png') no-repeat center center;
   background-size: 50px;
 }
 
@@ -216,7 +216,7 @@ $bgc: #b3d8ff;
   .logo {
     width: 50px;
     height: 50px;
-    background: url("~@assets/img/small-logo1.png") no-repeat center center;
+    background: url('~@assets/img/small-logo1.png') no-repeat center center;
     background-size: 40px;
   }
   // 导航栏
@@ -227,7 +227,7 @@ $bgc: #b3d8ff;
     display: flex;
     justify-content: center;
     &::after {
-      content: "";
+      content: '';
       display: block;
       clear: both;
     }
@@ -236,7 +236,7 @@ $bgc: #b3d8ff;
   .menu {
     display: block;
     float: right;
-    background: url("~@assets/img/svg/menu.svg") no-repeat center center;
+    background: url('~@assets/img/svg/menu.svg') no-repeat center center;
     height: 50px;
     width: 50px;
     background-size: 40px;

@@ -7,51 +7,51 @@
 
 <script>
 export default {
-  name: "basic-banner",
+  name: 'basic-banner',
   data() {
     return {
       imgs: [
         {
-          img: "../../../assets/img/food/food1.png",
+          img: '../../../assets/img/food/food1.png',
           id: 1
         },
         {
-          img: "../../../assets/img/food/food2.png",
+          img: '../../../assets/img/food/food2.png',
           id: 2
         },
         {
-          img: "../../../assets/img/food/food3.png",
+          img: '../../../assets/img/food/food3.png',
           id: 3
         }
       ],
       flag: 0,
       interval: null
-    };
+    }
   },
   methods: {
     // 鼠标放上去，停止轮播
     change(index) {
-      this.flag = index;
-      clearInterval(this.interval);
+      this.flag = index
+      clearInterval(this.interval)
     },
     run() {
       this.interval = setInterval(
         function() {
           if (this.flag == 2) {
-            this.flag = 0;
-            return;
+            this.flag = 0
+            return
           }
-          this.flag++;
+          this.flag++
         }.bind(this),
         4000
-      );
+      )
     }
   },
   mounted() {
     // 轮播图定时器
-    this.run();
+    this.run()
   }
-};
+}
 </script>
 
 <style scoped>

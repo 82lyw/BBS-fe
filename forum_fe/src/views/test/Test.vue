@@ -9,21 +9,17 @@
 </template>
 
 <script>
-  import BasicPanel from '@components/common/panel/BasicPanel'
-  
-  export default {
-    name: 'test',
-    data() {
-      return {
-        
-      }
-    },
-    components: {
-      BasicPanel
-    }
+import BasicPanel from '@components/common/panel/BasicPanel'
+
+export default {
+  name: 'test',
+  data() {
+    return {}
+  },
+  components: {
+    BasicPanel
   }
+}
 </script>
 
-<style scoped>
-  
-</style>
+<style scoped></style>

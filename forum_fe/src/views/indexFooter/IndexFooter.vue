@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  name: "index-footer",
+  name: 'index-footer',
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 
 <style scoped>
