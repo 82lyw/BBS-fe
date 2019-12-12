@@ -9,6 +9,10 @@
       <!-- <div :title="topic.author">
         <img class="owner-avatar" :src="avatarSrc(topic.authorAvatar)" alt="" />
       </div> -->
+
+      <div :title="topic.author" style="width: 50px;">
+        <span class="author">{{ topic.author }}</span>
+      </div>
       <!-- 评论数、浏览量 -->
       <div class="number">
         <span class="comments" title="回复数">{{ topic.comments.length }}</span>
@@ -16,7 +20,9 @@
         <span class="browsed" title="浏览量">{{ topic.browsed }}</span>
       </div>
       <!-- tag -->
-      <!-- <span class="tag-box"><span>{{ getTag(topic.tag, topic.status) }}</span></span> -->
+      <span class="tag-box"
+        ><span>{{ getTag(topic.tag, topic.status) }}</span></span
+      >
       <!-- 标题 -->
       <div class="title">{{ topic.title }}</div>
       <!-- 最后评论时间 -->
@@ -37,21 +43,13 @@ export default {
   name: 'topics-list',
   props: ['topics'],
   computed: {
-    // 此处闭包
-    // avatarSrc() {
-    //   return function(avatar) {
-    //     if (avatar) {
-    //       return baseURL + '/uploads/face/' + avatar
-    //     } else return baseURL + '/public/img/default/avatar-default.png'
-    //   }
-    // },
-    // getTag() {
-    //   return function(tag, status) {
-    //     if (status == 1) {
-    //       return '置顶'
-    //     } else return tag
-    //   }
-    // }
+    getTag() {
+      return function(tag, status) {
+        if (status == 1) {
+          return '置顶'
+        } else return tag
+      }
+    }
   },
   methods: {
     clickTopic(topic_id) {
@@ -82,6 +80,19 @@ export default {
   width: 36px;
   margin-top: 7px;
   border: 1px solid #000000;
+}
+
+.author {
+  width: 50px;
+  flex: 1;
+  margin-left: 5px;
+  line-height: 50px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .number {
