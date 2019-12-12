@@ -20,7 +20,7 @@
           <li><a @click.prevent="GotoIndex">首页</a></li>
           <li><a @click.prevent="test">测试本站</a></li>
           <li><a @click.prevent="about">关于</a></li>
-          <!-- <li>
+          <li>
             <a @click.prevent="register" v-show="!$store.state.user.username"
               >注册</a
             >
@@ -34,9 +34,9 @@
             <a @click.prevent="logout" v-show="$store.state.user.username"
               >退出登录</a
             >
-          </li> -->
+          </li>
           <li>
-            <a @click.prevent="my" v-show="username">我的</a>
+            <a @click.prevent="my" v-show="$store.state.user.username">我的</a>
           </li>
         </ul>
       </transition>
@@ -52,8 +52,7 @@ export default {
       // 搜索内容
       searchText: null,
       // 是否显示菜单栏
-      isNavShow: true,
-      username: JSON.parse(localStorage.getItem('username'))
+      isNavShow: true
     }
   },
   created() {
@@ -93,6 +92,7 @@ export default {
     // 登出
     logout() {
       localStorage.removeItem('token')
+      localStorage.removeItem('username')
       this.$store.commit('logout')
     },
     // 我的

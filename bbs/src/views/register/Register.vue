@@ -158,7 +158,11 @@ export default {
           })
           .then(res => {
             if (res.data.status === 1) {
-              console.log(res.data.data)
+              // console.log(res.data.data)
+              // 返回用户数据，保存到vuex中
+              // this.$store.commit('setUser', res.data.data)
+              // 注册成功跳转
+              alert('注册成功')
               _this.$router.push('/login')
             } else {
               console.log('注册失败')

@@ -8,12 +8,11 @@
             请登录
           </button>
           <div v-else>
-            <!-- <img class="user-avatar" :src="avatarSrc" alt="默认头像" /> -->
             <div class="user-name">
-              <span @click="profile">{{ username }}</span>
-              <!-- <span @click="profile">{{
+              <!-- <span @click="profile">{{ username }}</span> -->
+              <span @click="profile">{{
                 this.$store.state.user.username
-              }}</span> -->
+              }}</span>
             </div>
           </div>
         </div>
@@ -22,18 +21,7 @@
 
     <basic-panel class="panel create" :isHeader="false">
       <template>
-        <div class="my-holder">
-          <!-- <button v-if="!isLogin" class="please-login" @click="login">
-            请登录
-          </button>
-          <div v-else>
-            <div class="user-name">
-              <span @click="profile">{{
-                this.$store.state.user.username
-              }}</span>
-            </div>
-          </div> -->
-        </div>
+        <div class="my-holder"></div>
         <button class="create-button" @click="create">发布话题</button>
       </template>
     </basic-panel>
@@ -81,8 +69,8 @@ export default {
   name: 'index-aside',
   data() {
     return {
-      token: JSON.parse(localStorage.getItem('token')),
-      username: JSON.parse(localStorage.getItem('username'))
+      // token: JSON.parse(localStorage.getItem('token')),
+      // username: JSON.parse(localStorage.getItem('username'))
     }
   },
   components: {
@@ -94,10 +82,7 @@ export default {
       this.$router.replace(path)
     },
     create() {
-      // if (this.token !== null || this.token !== '') {
-      //   this.isLogin = true
-      // }
-      if (this.username) {
+      if (this.$store.state.user.username) {
         this.router('/create')
       } else {
         alert('请先登录')
@@ -105,7 +90,7 @@ export default {
       }
     },
     profile() {
-      if (this.username) {
+      if (this.$store.state.user.username) {
         this.router('/profile')
       }
     },
@@ -116,15 +101,9 @@ export default {
   computed: {
     // 判断是否登录
     isLogin() {
-      if (this.username) return true
+      if (this.$store.state.user.username) return true
       else return false
     }
-    // 计算头像src
-    // avatarSrc() {
-    //   if (this.$store.state.user.avatar) {
-    //     return baseURL + "/uploads/face/" + this.$store.state.user.avatar;
-    //   } else return baseURL + "/public/img/default/avatar-default.png";
-    // }
   }
 }
 </script>

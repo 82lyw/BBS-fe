@@ -22,7 +22,7 @@ console.log(process.env.NODE_ENV)
 
 _axios.interceptors.request.use(
   function(config) {
-    let token = JSON.parse(localStorage.getItem('token'))
+    let token = localStorage.getItem('token')
 
     if (token) {
       token = 'manage ' + token
@@ -55,6 +55,7 @@ _axios.interceptors.response.use(
         case 401:
           // 返回 401 清除token信息并跳转到登录页面
           confirm('过期')
+          localStorage.clear()
         // this.$router.replace({
         //   path: '/login'
         // })

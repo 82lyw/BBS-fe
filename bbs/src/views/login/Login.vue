@@ -70,9 +70,8 @@ export default {
         .then(res => {
           if (res.data.status === 1) {
             console.log(res.data)
-            localStorage.setItem('token', JSON.stringify(res.data.token))
-
-            localStorage.setItem('username', JSON.stringify(_this.username))
+            this.$store.commit('setUser', _this.username)
+            localStorage.setItem('token', res.data.token)
             _this.$router.push('/')
           } else {
             console.log('登录失败')
@@ -81,18 +80,6 @@ export default {
         .catch(err => {
           console.log(err)
         })
-      // login(this.email, this.password).then(res => {
-      //   if (res.data.msg == 'ok') {
-      //     alert('登录成功')
-      //     // 储存token到本地
-      //     localStorage.setItem('token', 'Bearer ' + res.data.token)
-      //     // 提交用户数据到vuex
-      //     this.$store.commit('setUser', res.data.user)
-      //     this.$router.replace('/')
-      //   } else {
-      //     alert('登录失败，请检查登录邮箱或密码是否正确')
-      //   }
-      // })
     }
   }
 }
