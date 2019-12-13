@@ -55,6 +55,18 @@ export default {
   },
   computed: {},
   methods: {
+    updateComment() {
+      let _this = this
+      this.axios.get('/api/comment/' + this.topicHeader.id).then(res => {
+        if (res.data.status) {
+          console.log(res.data.data)
+          _this.topicComments = res.data.data
+          console.log(_this.topicComments)
+        } else {
+          console.log('请求comments失败')
+        }
+      })
+    },
     getDate(create_time) {
       var createDate = new Date(create_time)
       var year = createDate.getFullYear()
@@ -67,7 +79,10 @@ export default {
       // 获取基础数据
       var text = this.$refs.editor.editor.txt.text()
       var username = this.$store.state.user.username
-      // var topic_id = this.topicHeader.topic_id
+
+      this.id = this.topicHeader.id
+      // console.log(text)
+      // console.log(topic_id)
       // var timestamp = new Date().getTime()
       // 评论非空
       if (!text.replace(/&nbsp;| /g, '')) {
@@ -79,6 +94,20 @@ export default {
         alert('请登录后再尝试')
         return
       }
+
+      let _this = this
+      this.axios
+        .post('/api/comment', {
+          topicId: _this.id,
+          content: text
+        })
+        .then(res => {
+          if (res.data.status === 1) {
+            console.log(res.data.date)
+            alert(res.data.message)
+            _this.updateComment()
+          }
+        })
     }
   }
 }
