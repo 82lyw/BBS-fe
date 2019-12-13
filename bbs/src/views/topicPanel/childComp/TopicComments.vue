@@ -16,7 +16,7 @@
             <img src="../../../assets/img/svg/agree-normal.svg" alt="" />
             <span>{{ comment.prefer }}</span>
           </div> -->
-          <a href="" class="replyer">{{ comment.username }}</a>
+          <a href="" class="replyer">{{ comment.userName }}</a>
           <a href="" class="reply-timer"
             >{{ comment.location }}楼 • {{ getDate(comment.createTime) }}</a
           >
