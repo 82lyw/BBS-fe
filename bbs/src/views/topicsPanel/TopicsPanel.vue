@@ -53,59 +53,6 @@ export default {
       }
       this.topics = [
         {
-          _id: '5db70ffaea6bbf2e541bc173',
-          status: 1,
-          browsed: 67,
-          prefer: 0,
-          author: 'admin',
-          tag: '分享',
-          title: '如何设置树莓派 VNC 的分辨率',
-          content:
-            '<p><img src="http://shumeipai.nxez.com/wp-content/uploads/2018/08/20180831163054227-0.jpg" style="max-width:100%;"><br></p><p>当我们<a href="http://shumeipai.nxez.com/2018/08/31/raspberry-pi-vnc-viewer-configuration-tutorial.html" target="_blank" rel="noopener noreferrer">使用 VNC 连接到树莓派</a>时，默认的分辨率非常低。甚至无法显示整个桌面，因此我们需要对分辨率进行设置。<br>在树莓派上设置 VNC 的分辨率很简单，在终端运行下面指令进入设置界面设置。&nbsp;</p><pre><code>sudo raspi-config</code></pre><p>按照下面的顺序选择 Advanced Options &gt; Resolution，最后选择一个更合适的分辨率并确认完成即可&nbsp;</p><p><img src="http://shumeipai.nxez.com/wp-content/uploads/2019/07/20190708222934328-0.png" style="max-width: 100%;"></p><p><img src="http://shumeipai.nxez.com/wp-content/uploads/2019/07/20190708222934205-0.png" style="max-width: 100%;"></p><p><img src="http://shumeipai.nxez.com/wp-content/uploads/2019/07/20190708222934680-0.png" style="max-width: 100%;">&nbsp;<br></p><p>&nbsp;建议在设置完成后重启树莓派或重新启动 VNC 服务让设置生效。<br></p><blockquote><strong>测试文章<br></strong><strong>文章标题：</strong><a href="http://shumeipai.nxez.com/2019/07/08/set-the-resolution-of-the-raspberry-pi-vnc.html" title="如何设置树莓派 VNC 的分辨率">如何设置树莓派 VNC 的分辨率</a>&nbsp;-&nbsp;<a href="http://shumeipai.nxez.com/" title="树莓派实验室">树莓派实验室<br></a><strong>固定链接：</strong><a href="http://shumeipai.nxez.com/2019/07/08/set-the-resolution-of-the-raspberry-pi-vnc.html" title="如何设置树莓派 VNC 的分辨率">http://shumeipai.nxez.com/2019/07/08/set-the-resolution-of-the-raspberry-pi-vnc.html</a></blockquote>',
-          topic_id: 23,
-          create_time: '2019-10-28T15:57:46.891Z',
-          last_modify_time: '2019-10-28T15:57:46.891Z',
-          comments: [
-            {
-              _id: '5db71357fcda571a804d0dd0',
-              commenter: 'admin',
-              content: '测试',
-              floor: 1,
-              create_time: '2019-10-28T16:12:07.818Z'
-            },
-            {
-              _id: '5db7135efcda571a804d0dd1',
-              commenter: 'admin',
-              content: '测试测试',
-              floor: 2,
-              create_time: '2019-10-28T16:12:14.635Z'
-            },
-            {
-              _id: '5db7aa0e26544c56ae7bc823',
-              commenter: 'root',
-              content: '哈哈哈',
-              floor: 3,
-              create_time: '2019-10-29T02:55:10.268Z'
-            },
-            {
-              _id: '5db8005cf1cf05571f5a1b7f',
-              commenter: 'root',
-              content: '学到了',
-              floor: 4,
-              create_time: '2019-10-29T09:03:24.996Z'
-            },
-            {
-              _id: '5dc3c73cf1cf05571f5a1b82',
-              commenter: 'eobeans',
-              content: '厉害了，富文本',
-              floor: 5,
-              create_time: '2019-11-07T07:26:52.786Z'
-            }
-          ],
-          __v: 0,
-          authorAvatar: '2fa176e0-f9f7-11e9-b7d4-dde4358527b8.jpg'
-        },
-        {
           _id: '5db7108cea6bbf2e541bc174',
           status: 0,
           browsed: 6,
@@ -140,7 +87,7 @@ export default {
           authorAvatar: '0e15b770-f56f-11e9-be41-190e4f139c70.jpg'
         }
       ]
-      this.totalTopics = 23
+      this.totalTopics = 2
       // var page = this.$refs.page.currentPage
       // var tag = this.$refs.nav.currentTag
       // getTopics(page, tag).then(res => {

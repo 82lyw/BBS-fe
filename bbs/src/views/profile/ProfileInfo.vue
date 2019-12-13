@@ -60,6 +60,7 @@ export default {
           .then(res => {
             if (res.data.status === 1) {
               console.log(res.data)
+              alert('修改成功')
             } else {
               console.log('修改失败')
             }

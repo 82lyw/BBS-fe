@@ -19,6 +19,22 @@
       </template>
     </basic-panel>
 
+    <!-- <basic-panel class="panel admin" :isHeader="false">
+      <template v-slot:header>管理员权限</template>
+      <template>
+        <div class="my-holder"></div>
+        <button class="admin-button" @click="admin">去管理</button>
+      </template>
+    </basic-panel> -->
+
+    <basic-panel class="panel admin">
+      <template v-slot:header>管理员权限</template>
+      <template>
+        <div class="my-holder"></div>
+        <button class="admin-button" @click="admin">去管理</button>
+      </template>
+    </basic-panel>
+
     <basic-panel class="panel create" :isHeader="false">
       <template>
         <div class="my-holder"></div>
@@ -26,7 +42,7 @@
       </template>
     </basic-panel>
 
-    <basic-panel class="panel banner">
+    <!-- <basic-panel class="panel banner">
       <template v-slot:header>今日美食</template>
       <template>
         <img
@@ -35,9 +51,9 @@
           alt="今日美食"
         />
       </template>
-    </basic-panel>
+    </basic-panel> -->
 
-    <basic-panel class="panel community">
+    <!-- <basic-panel class="panel community">
       <template v-slot:header>Node.js 开源技术社区</template>
       <template>
         <a href="https://cnodejs.org/" target="_blank">
@@ -58,7 +74,7 @@
           >
         </p>
       </template>
-    </basic-panel>
+    </basic-panel> -->
   </div>
 </template>
 
@@ -96,6 +112,11 @@ export default {
     },
     login() {
       this.router('/login')
+    },
+    admin() {
+      if (this.$store.state.user.username) {
+        this.router('/admin')
+      }
     }
   },
   computed: {
@@ -152,6 +173,19 @@ export default {
     @include basic-button;
     position: absolute;
     top: 50%;
+    transform: translateY(-50%);
+  }
+  .my-holder {
+    display: none;
+  }
+}
+
+.admin {
+  position: relative;
+  .admin-button {
+    @include basic-button;
+    position: absolute;
+    top: 65%;
     transform: translateY(-50%);
   }
   .my-holder {

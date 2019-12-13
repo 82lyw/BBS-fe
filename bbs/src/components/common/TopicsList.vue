@@ -5,11 +5,6 @@
       :key="index"
       @click="clickTopic(topic.topic_id)"
     >
-      <!-- 头像 -->
-      <!-- <div :title="topic.author">
-        <img class="owner-avatar" :src="avatarSrc(topic.authorAvatar)" alt="" />
-      </div> -->
-
       <div :title="topic.author" style="width: 50px;">
         <span class="author">{{ topic.author }}</span>
       </div>
@@ -37,8 +32,6 @@
 </template>
 
 <script>
-// import { baseURL } from '@network/request.js'
-
 export default {
   name: 'topics-list',
   props: ['topics'],
