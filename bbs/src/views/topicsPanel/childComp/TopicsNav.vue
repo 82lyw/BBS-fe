@@ -17,14 +17,7 @@ export default {
   name: 'topics-nav',
   data() {
     return {
-      nav: [
-        '全部',
-        '精华',
-        // '分享',
-        '问答',
-        // '求职',
-        '测试'
-      ],
+      nav: ['全部', '精华', '问答'],
       isActive: 0,
       currentTag: '全部'
     }
@@ -36,7 +29,9 @@ export default {
       this.isActive = index
       this.currentTag = item
       // 请求数据
-      this.$emit('getTopicByTag', 'tag')
+      // this.$emit('getTopicByTag', 'tag')
+      // console.log(index)
+      this.$emit('getTopicByTag', index)
     }
   }
 }

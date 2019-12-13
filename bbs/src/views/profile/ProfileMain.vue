@@ -44,9 +44,9 @@ export default {
         console.log(res.data.data)
         if (res.data.status === 1) {
           _this.user = res.data.data
-          // localStorage.setItem('info',JSON.stringify(_this.user))
+          // console.log(res.data.data)
+          // console.log(_this.user)
           this.$store.commit('setUserInfo', _this.user)
-          console.log(_this.user)
         } else {
           alert('获取个人信息失败！')
         }

@@ -3,30 +3,27 @@
     <li
       v-for="(topic, index) in topics"
       :key="index"
-      @click="clickTopic(topic.topic_id)"
+      @click="clickTopic(topic.id)"
     >
-      <div :title="topic.author" style="width: 50px;">
-        <span class="author">{{ topic.author }}</span>
+      <div :title="topic.createUserName">
+        <span class="author separate">作者{{ topic.createUserName }}</span>
       </div>
       <!-- 评论数、浏览量 -->
-      <div class="number">
+      <!-- <div class="number">
         <span class="comments" title="回复数">{{ topic.comments.length }}</span>
         /
         <span class="browsed" title="浏览量">{{ topic.browsed }}</span>
-      </div>
+      </div> -->
       <!-- tag -->
-      <span class="tag-box"
+      <!-- <span class="tag-box"
         ><span>{{ getTag(topic.tag, topic.status) }}</span></span
-      >
+      > -->
+      <!-- 标签 -->
+      <span class="tag-box" v-show="topic.boutique"><span>精华</span></span>
       <!-- 标题 -->
       <div class="title">{{ topic.title }}</div>
-      <!-- 最后评论时间 -->
-      <!-- <div class="last-comment-date" v-if="topic.comments[0]">{{topic.header.author}}</div> -->
-      <!-- 最后评论人头像 -->
-      <!-- <div :title="topic.comments[comments.length-1].commenter">
-        <img class="last-commenter-avatar" src="~@assets/img/avatar-default.png" alt=""
-        v-if="topic.comments[0]">
-      </div> -->
+
+      <span class="time">{{ getDate(topic.createTime) }}</span>
     </li>
   </ul>
 </template>
@@ -45,11 +42,18 @@ export default {
     }
   },
   methods: {
-    clickTopic(topic_id) {
+    clickTopic(id) {
       this.$router.push({
         name: 'topic',
-        params: { id: topic_id }
+        params: { id: id }
       })
+    },
+    getDate(create_time) {
+      var createDate = new Date(create_time)
+      var year = createDate.getFullYear()
+      var month = createDate.getMonth()
+      var date = createDate.getDate()
+      return `${year}年${month}月${date}日`
     }
   }
 }
@@ -75,8 +79,13 @@ export default {
   border: 1px solid #000000;
 }
 
+.separate::before {
+  content: '• ';
+}
+
 .author {
-  width: 50px;
+  color: #838383;
+  font-size: 12px;
   flex: 1;
   margin-left: 5px;
   line-height: 50px;
@@ -86,6 +95,20 @@ export default {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.time {
+  color: #838383;
+  font-size: 12px;
+  // flex: 1;
+  // margin-left: 5px;
+  line-height: 50px;
+  // white-space: nowrap;
+  // text-overflow: ellipsis;
+  // overflow: hidden;
+  // &:hover {
+  //   text-decoration: underline;
+  // }
 }
 
 .number {
@@ -109,6 +132,7 @@ export default {
 }
 
 .tag-box {
+  margin-left: 10px;
   span {
     @include tag-box;
   }
@@ -119,6 +143,8 @@ export default {
 }
 
 .title {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
   flex: 1;
   margin-left: 5px;
   line-height: 50px;

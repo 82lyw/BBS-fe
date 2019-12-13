@@ -19,6 +19,7 @@ const ProfileInfo = () => import('@views/profile/ProfileInfo.vue')
 const ProfileMod = () => import('@views/profile/ProfileMod.vue')
 
 const TopicsPanel = () => import('@views/topicsPanel/TopicsPanel.vue')
+const TopicPanel = () => import('@views/topicPanel/TopicPanel.vue')
 
 const routes = [
   {
@@ -32,6 +33,14 @@ const routes = [
     component: TopicsPanel,
     meta: {
       title: '社区首页'
+    }
+  },
+  {
+    path: '/topic/:id',
+    name: 'topic',
+    component: TopicPanel,
+    meta: {
+      title: '文章'
     }
   },
   {
