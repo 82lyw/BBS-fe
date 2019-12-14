@@ -2,6 +2,7 @@
 
 import Vue from 'vue'
 import axios from 'axios'
+import router from './../router'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 // axios.defaults.headers.common['Authorization'] = JSON.parse(
@@ -54,8 +55,9 @@ _axios.interceptors.response.use(
       switch (error.response.status) {
         case 401:
           // 返回 401 清除token信息并跳转到登录页面
-          confirm('过期')
           localStorage.clear()
+          confirm('请登录')
+          router.push({ path: '/login' })
         // this.$router.replace({
         //   path: '/login'
         // })
