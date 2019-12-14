@@ -82,7 +82,7 @@ export default {
     },
     getBoutique() {
       let _this = this
-      this.axios.get('/api/topic/getBoutique').then(res => {
+      this.axios.get('/api/topic/boutique').then(res => {
         if (res.data.status) {
           console.log(res.data.data)
           _this.topics = res.data.data.topics

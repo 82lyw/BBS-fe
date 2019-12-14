@@ -1,5 +1,8 @@
 <template>
   <ul class="topic">
+    <li v-show="topics.length === 0" style="line-height: 50px;">
+      暂无帖子
+    </li>
     <li
       v-for="(topic, index) in topics"
       :key="index"
