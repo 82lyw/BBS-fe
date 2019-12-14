@@ -98,7 +98,7 @@ export default {
         return
       }
 
-      // let _this = this
+      let _this = this
       this.axios
         .put('/api/topic', {
           title: title,
@@ -107,6 +107,10 @@ export default {
         .then(res => {
           if (res.data.status === 1) {
             alert('create topic success!')
+            _this.$router.push({
+              name: 'topic',
+              params: { id: res.data.data.id }
+            })
           } else {
             console.log('create failed!')
           }
