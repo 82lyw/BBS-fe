@@ -44,8 +44,14 @@
               </div>
             </td>
             <td>
-              <button class="primary">置顶</button>
-              <div>
+              <button
+                class="primary"
+                v-if="!topic.top"
+                @click="addTop(topic.id, index)"
+              >
+                置顶
+              </button>
+              <div v-else>
                 <button class="success is-plain">已置顶</button>
                 <button class="warning">撤消</button>
               </div>
@@ -144,6 +150,15 @@ export default {
           alert('加精成功！')
           // this.getTopic()
           this.topics[i].boutique = true
+        }
+      })
+    },
+    addTop(id, i) {
+      this.axios.post('/api/topTopic', { id: id }).then(res => {
+        if (res.data.status === 1) {
+          alert('置顶成功！')
+          // this.getTopic()
+          this.topics[i].top = true
         }
       })
     }
