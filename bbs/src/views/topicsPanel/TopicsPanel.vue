@@ -9,7 +9,6 @@
         <topics-list :topics="topics" :totalTopics="totalTopics" />
         <page
           :totalTopics="totalTopics"
-          :tagNumber="tagNumber"
           @getPageNumber="getPageNumber"
           ref="page"
         />

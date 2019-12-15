@@ -1,6 +1,23 @@
 <template>
   <ul class="topic">
     <li
+      v-for="topic in topics"
+      :key="topic.id"
+      @click="clickTopic(topic.id)"
+      v-show="topic.top"
+    >
+      <div :title="topic.createUserName">
+        <span class="author separate">作者{{ topic.createUserName }}</span>
+      </div>
+      <!-- 标签 -->
+      <span class="tag-box" v-show="topic.top"><span>置顶</span></span>
+      <span class="tag-box" v-show="topic.boutique"><span>精华</span></span>
+      <!-- 标题 -->
+      <div class="title">{{ topic.title }}</div>
+
+      <span class="time">{{ getDate(topic.createTime) }}</span>
+    </li>
+    <li
       v-show="topics === null || topics.length === 0"
       style="line-height: 50px;"
     >
@@ -8,23 +25,15 @@
     </li>
     <li
       v-for="(topic, index) in topics"
-      :key="index"
+      :key="'info2-' + index"
       @click="clickTopic(topic.id)"
+      v-show="!topic.top"
     >
       <div :title="topic.createUserName">
         <span class="author separate">作者{{ topic.createUserName }}</span>
       </div>
-      <!-- 评论数、浏览量 -->
-      <!-- <div class="number">
-        <span class="comments" title="回复数">{{ topic.comments.length }}</span>
-        /
-        <span class="browsed" title="浏览量">{{ topic.browsed }}</span>
-      </div> -->
-      <!-- tag -->
-      <!-- <span class="tag-box"
-        ><span>{{ getTag(topic.tag, topic.status) }}</span></span
-      > -->
       <!-- 标签 -->
+      <span class="tag-box" v-show="topic.top"><span>置顶</span></span>
       <span class="tag-box" v-show="topic.boutique"><span>精华</span></span>
       <!-- 标题 -->
       <div class="title">{{ topic.title }}</div>
