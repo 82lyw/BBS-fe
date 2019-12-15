@@ -96,6 +96,9 @@ export default {
       var title = this.title
       var content = this.$refs.editor.editorContent
       var author = this.$store.state.user.username
+      var question = this.question
+      var reward = this.score
+
       console.log(content)
       this.content = content
 
@@ -115,12 +118,19 @@ export default {
         return
       }
 
+      let data = {
+        title: title,
+        content: content
+      }
+
+      if (question !== null && question !== undefined && question.length !== 0) {
+        data.question = question
+        data.reward = reward
+      }
+
       let _this = this
       this.axios
-        .put('/api/topic', {
-          title: title,
-          content: content
-        })
+        .put('/api/topic', data)
         .then(res => {
           if (res.data.status === 1) {
             alert('create topic success!')
