@@ -2,12 +2,20 @@
   <div class="topic-demand">
     <div class="title">
       <span>悬赏问答：</span>
-      <span class="reward">
-        {{topicHeader.demandReward}}
-      </span>
-      <img class="reward-icon" src="@assets/img/reward.png">
+      <div v-if="haveWinner()" class="reward-box">
+        <span>
+          {{winner}}
+        </span>
+        <img src="@assets/img/winner.png">
+      </div>
+      <div v-else class="reward-box">
+        <span>
+          {{reward}}
+        </span>
+        <img src="@assets/img/reward.png">
+      </div>
     </div>
-    <div class="text-area" v-html="topicHeader.demandContent"></div>
+    <div class="text-area" v-html="content"></div>
   </div>
 </template>
 
@@ -16,6 +24,20 @@ export default {
     name: 'topic-demand',
     props: {
       topicHeader: Object
+    },
+    data() {
+      return {
+        reward: this.topicHeader.demandReward,
+        content: this.topicHeader.demandContent,
+        winner: this.topicHeader.winnerUsername
+      }
+    },
+    methods: {
+      haveWinner() {
+        let winner = this.topicHeader.winnerUsername
+        console.log(winner)
+        return winner != null  && winner !== undefined && winner.length !== 0
+      }
     }
 }
 </script>
@@ -36,14 +58,19 @@ export default {
   margin: 5px;
 }
 
-.reward {
-  line-height: 20px;
+.reward-box {
   float: right;
 }
 
-.reward-icon {
+.reward-box span {
+  line-height: 20px;
+  float: left;
+  margin-right: 5px;
+}
+
+.reward-box img {
   width: 20px;
   height: 20px;
-  float: right;
+  float: left;
 }
 </style>
