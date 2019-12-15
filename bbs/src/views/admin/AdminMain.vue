@@ -53,7 +53,9 @@
               </button>
               <div v-else>
                 <button class="success is-plain">已置顶</button>
-                <button class="warning">撤消</button>
+                <button class="warning" @click="deleteTop(topic.id, index)">
+                  撤消
+                </button>
               </div>
             </td>
             <td>
@@ -159,6 +161,15 @@ export default {
           alert('置顶成功！')
           // this.getTopic()
           this.topics[i].top = true
+        }
+      })
+    },
+    deleteTop(id, i) {
+      this.axios.delete('/api/topTopic?id=' + id).then(res => {
+        if (res.data.status === 1) {
+          alert('撤消成功！')
+          // this.getTopic()
+          this.topics[i].top = false
         }
       })
     }
