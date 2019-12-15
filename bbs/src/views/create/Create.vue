@@ -43,6 +43,7 @@
       </div>
       <div v-show="need">
         <textarea class="question" v-model="question"></textarea>
+        <input type="number" v-model="score" />
       </div>
 
       <!-- 提交 -->
@@ -62,7 +63,8 @@ export default {
       title: null,
       content: null,
       need: false,
-      question: null
+      question: null,
+      score: null
     }
   },
   components: {
@@ -73,7 +75,22 @@ export default {
     isNeed() {
       console.log(this.need)
     },
-    submitQuestion() {},
+    submitQuestion(id) {
+      let _this = this
+      this.axios
+        .put('/api/demand', {
+          topicId: id,
+          content: _this.question,
+          reward: _this.score
+        })
+        .then(res => {
+          if (res.data.status === 1) {
+            console.log(res.data.message)
+          } else {
+            alert(res.data.message)
+          }
+        })
+    },
     // 提交文章
     submit() {
       var title = this.title

@@ -1,6 +1,9 @@
 <template>
   <ul class="topic">
-    <li v-show="topics.length === 0" style="line-height: 50px;">
+    <li
+      v-show="topics === null || topics.length === 0"
+      style="line-height: 50px;"
+    >
       暂无帖子
     </li>
     <li

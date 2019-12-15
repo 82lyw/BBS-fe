@@ -18,6 +18,10 @@ const ProfileMain = () => import('@views/profile/ProfileMain.vue')
 const ProfileInfo = () => import('@views/profile/ProfileInfo.vue')
 const ProfileMod = () => import('@views/profile/ProfileMod.vue')
 
+const Admin = () => import('@views/admin/Admin.vue')
+const AdminMain = () => import('@views/admin/AdminMain.vue')
+const AdminEdit = () => import('@views/admin/AdminEdit.vue')
+
 const TopicsPanel = () => import('@views/topicsPanel/TopicsPanel.vue')
 const TopicPanel = () => import('@views/topicPanel/TopicPanel.vue')
 
@@ -116,6 +120,31 @@ const routes = [
         component: ProfileMod,
         meta: {
           title: '修改密码'
+        }
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    redirect: '/admin/main',
+    component: Admin,
+    meta: {
+      title: '管理员权限'
+    },
+    children: [
+      {
+        path: 'main',
+        component: AdminMain,
+        meta: {
+          title: '管理员权限'
+        }
+      },
+      {
+        path: 'edit/:id',
+        name: 'edit',
+        component: AdminEdit,
+        meta: {
+          title: '修改帖子'
         }
       }
     ]
