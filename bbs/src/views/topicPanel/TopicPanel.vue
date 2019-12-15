@@ -3,6 +3,7 @@
     <basic-panel :isHeader="false">
       <topic-header :topicHeader="topicHeader" />
       <topic-content :topicContent="topicContent" />
+      <topic-demand v-if="haveDemand()" :topicHeader="topicHeader"/>
     </basic-panel>
 
     <topic-comments
@@ -16,6 +17,7 @@
 <script>
 import BasicPanel from '@components/common/panel/BasicPanel.vue'
 import TopicHeader from './childComp/TopicHeader'
+import TopicDemand from './childComp/TopicDemand'
 import TopicContent from './childComp/TopicContent'
 import TopicComments from './childComp/TopicComments'
 // import {getTopic} from '@network/getData'
@@ -25,14 +27,15 @@ export default {
   data() {
     return {
       topic_id: null,
-      topicContent: '',
       topicHeader: {},
+      topicContent: '',
       topicComments: []
     }
   },
   components: {
     BasicPanel,
     TopicHeader,
+    TopicDemand,
     TopicContent,
     TopicComments
   },
@@ -68,6 +71,10 @@ export default {
           console.log('请求comments失败')
         }
       })
+    },
+    haveDemand() {
+      let content = this.topicHeader.demandContent
+      return content !== null && content !== undefined && content.length !== 0
     }
   }
 }
