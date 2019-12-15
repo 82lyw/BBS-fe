@@ -12,6 +12,8 @@ const About = () => import('@/views/about/About.vue')
 const Create = () => import('@/views/create/Create.vue')
 const NotFound = () => import('@views/notFound/NotFound.vue')
 
+const Search = () => import('@views/search/Search.vue')
+
 const Profile = () => import('@views/profile/Profile.vue')
 const ProfileAvatar = () => import('@views/profile/ProfileAvatar.vue')
 const ProfileMain = () => import('@views/profile/ProfileMain.vue')
@@ -148,6 +150,11 @@ const routes = [
         }
       }
     ]
+  },
+  {
+    path: '/search/:query',
+    name: 'search',
+    component: Search
   },
   {
     path: '*',
