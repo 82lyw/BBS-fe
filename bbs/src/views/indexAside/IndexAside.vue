@@ -27,7 +27,7 @@
       </template>
     </basic-panel> -->
 
-    <basic-panel class="panel admin">
+    <basic-panel v-if="isAdmin" class="panel admin">
       <template v-slot:header>管理员权限</template>
       <template>
         <div class="my-holder"></div>
@@ -114,7 +114,7 @@ export default {
       this.router('/login')
     },
     admin() {
-      if (this.$store.state.info.id) {
+      if (this.$store.state.info.admin) {
         this.router('/admin')
       } else {
         alert('您不是管理员哦~')
@@ -126,11 +126,11 @@ export default {
     isLogin() {
       if (this.$store.state.user.username) return true
       else return false
+    },
+    isAdmin() {
+      if (this.$store.state.info.admin) return true
+      else return false
     }
-    // isAdmin() {
-    //   if(this.$store.state.info.id) return true
-    //   else return false
-    // }
   }
 }
 </script>
