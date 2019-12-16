@@ -114,8 +114,10 @@ export default {
       this.router('/login')
     },
     admin() {
-      if (this.$store.state.user.username) {
+      if (this.$store.state.info.id) {
         this.router('/admin')
+      } else {
+        alert('您不是管理员哦~')
       }
     }
   },
@@ -125,6 +127,10 @@ export default {
       if (this.$store.state.user.username) return true
       else return false
     }
+    // isAdmin() {
+    //   if(this.$store.state.info.id) return true
+    //   else return false
+    // }
   }
 }
 </script>

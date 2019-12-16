@@ -1,14 +1,14 @@
 <template>
   <div>
     <h3>管理员权限</h3>
-    <h3>我发布的帖子</h3>
+    <!-- <h3>我发布的帖子</h3>
     <p>这里是帖子列表哦~</p>
-    <br />
+    <br /> -->
     <br />
     <div id="table">
-      <div class="add">
+      <!-- <div class="add">
         <span>没想好，姑且这么放着吧</span>
-      </div>
+      </div> -->
       <table cellpadding="0" cellspacing="0">
         <thead>
           <tr>
