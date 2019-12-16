@@ -2,7 +2,7 @@
   <div class="porfile-info">
     <form class="input-form">
       <div class="input-box">
-        <label for="name">name</label>
+        <label for="name">姓名</label>
         <div class="right-box">
           <div class="good-input">
             <input type="text" name="name" v-model="name" id="name" />
@@ -11,7 +11,7 @@
       </div>
 
       <div class="input-box">
-        <label for="contact">contact</label>
+        <label for="contact">联系方式</label>
         <div class="right-box">
           <div class="good-input">
             <input type="text" name="contact" v-model="contact" id="contact" />
@@ -20,10 +20,24 @@
       </div>
 
       <div class="input-box">
-        <label for="name">natural</label>
+        <label for="nature">工作性质</label>
         <div class="right-box">
           <div class="good-input">
             <input type="text" name="natural" v-model="natural" id="natural" />
+          </div>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <label for="workPlace">工作地点</label>
+        <div class="right-box">
+          <div class="good-input">
+            <input
+              type="text"
+              name="workPlace"
+              v-model="workPlace"
+              id="workPlace"
+            />
           </div>
         </div>
       </div>
@@ -44,18 +58,20 @@ export default {
     return {
       name: '',
       contact: '',
-      natural: ''
+      natural: '',
+      workPlace: ''
     }
   },
   methods: {
     submit() {
-      if (this.name && this.contact && this.natural) {
+      if (this.name && this.contact && this.natural && this.workPlace) {
         let _this = this
         this.axios
           .post('/api/user/profile', {
             name: _this.name,
             contact: _this.contact,
-            nature: _this.natural
+            nature: _this.natural,
+            workPlace: _this.workPlace
           })
           .then(res => {
             if (res.data.status === 1) {
