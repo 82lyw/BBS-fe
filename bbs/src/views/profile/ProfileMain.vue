@@ -46,10 +46,10 @@
                 class="primary"
                 @click="addBoutique(topic.id, index)"
               >
-                精华
+                已加精
               </button>
               <div v-else>
-                <button class="success is-plain">普通</button>
+                <button class="success is-plain">未加精</button>
               </div>
             </td>
             <td width="14%">
@@ -125,7 +125,7 @@ export default {
     edit(id) {
       console.log(id)
       this.$router.push({
-        name: 'edit',
+        name: 'update',
         params: { id: id }
       })
     },

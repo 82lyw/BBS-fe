@@ -12,7 +12,7 @@
           <li class="exclude-li">/</li>
           <li @click="$router.push('/profile/mod')">修改密码</li>
           <li class="exclude-li">/</li>
-          <li @click="$router.push('/profile/update')">修改帖子</li>
+          <li>修改帖子</li>
         </ul>
       </template>
       <template>
