@@ -77,6 +77,7 @@ export default {
             if (res.data.status === 1) {
               console.log(res.data)
               alert('修改成功')
+              _this.$router.push('/profile/main')
             } else {
               console.log('修改失败')
             }
