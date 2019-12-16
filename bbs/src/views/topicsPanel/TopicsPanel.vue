@@ -4,23 +4,15 @@
       <template v-slot:header>
         <topics-nav @getTopicByTag="switchPage" ref="nav" />
       </template>
-      <!-- <template v-slot:header>
-        <topics-nav ref="nav" />
-      </template> -->
 
       <template class="inner">
-        <topics-list :topics="topics" />
-        <!-- <pagination
+        <topics-list :topics="topics" :totalTopics="totalTopics" />
+        <page
           :totalTopics="totalTopics"
-          @switchPage="switchPage"
-          @go="go"
+          @getPageNumber="getPageNumber"
           ref="page"
-        /> -->
+        />
       </template>
-      <!-- <template class="inner">
-        <topics-list :topics="topics" />
-        <pagination :totalTopics="totalTopics" ref="page" />
-      </template> -->
     </basic-panel>
   </div>
 </template>
@@ -28,33 +20,57 @@
 <script>
 import BasicPanel from '@components/common/panel/BasicPanel.vue'
 import TopicsList from '@components/common/TopicsList.vue'
+import Page from '@components/common/Page.vue'
 import TopicsNav from './childComp/TopicsNav.vue'
-// import Pagination from '@components/common/Pagination.vue'
 
 export default {
   name: 'topics-panel',
   components: {
     BasicPanel,
     TopicsList,
-    TopicsNav
+    TopicsNav,
+    Page
+
     // Pagination
   },
   data() {
     return {
       name: '',
       topics: null,
-      totalTopics: 0
+      totalTopics: 0,
+      currentPage: 1,
+      tagNumber: 0
     }
   },
+  computed: {},
   methods: {
+    getPageNumber: function() {
+      // let page = this.$ref.page
+      let current_page = this.$refs.page.current
+      console.log(current_page)
+      // this.getTopic(current_page)
+      switch (this.tagNumber) {
+        case 0:
+          this.getTopic(current_page)
+          break
+        case 1:
+          this.getBoutique(current_page)
+          break
+        case 2:
+          this.getDemand(current_page)
+          break
+        // default:
+        //   break;
+      }
+    },
     switchPage: function() {
       // console.log(index)
       // var i = this.$refs.nav.isActive
       // var i = 0
       let data = this.$refs.nav
-      let index = data.isActive
+      this.tagNumber = data.isActive
       // console.log(data.isActive)
-      switch (index) {
+      switch (this.tagNumber) {
         case 0:
           this.getTopic()
           break
@@ -68,36 +84,39 @@ export default {
         //   break;
       }
     },
-    getDemand() {
+    getDemand(a = 0) {
       let _this = this
-      this.axios.get('/api/topic/demand').then(res => {
+      this.axios.get('/api/topic/demand?pageNumber=' + a).then(res => {
         if (res.data.status) {
           console.log(res.data.data)
           _this.topics = res.data.data.topics
+          _this.totalTopics = res.data.data.total
           console.log(_this.topics)
         } else {
           console.log('请求topics失败')
         }
       })
     },
-    getBoutique() {
+    getBoutique(a = 0) {
       let _this = this
-      this.axios.get('/api/topic/boutique').then(res => {
+      this.axios.get('/api/topic/boutique?pageNumber=' + a).then(res => {
         if (res.data.status) {
           console.log(res.data.data)
           _this.topics = res.data.data.topics
+          _this.totalTopics = res.data.data.total
           console.log(_this.topics)
         } else {
           console.log('请求topics失败')
         }
       })
     },
-    getTopic() {
+    getTopic(a = 0) {
       let _this = this
-      this.axios.get('/api/topic/find').then(res => {
+      this.axios.get('/api/topic/find?pageNumber=' + a).then(res => {
         if (res.data.status) {
           console.log(res.data.data)
           _this.topics = res.data.data.topics
+          _this.totalTopics = res.data.data.total
           console.log(_this.topics)
         } else {
           console.log('请求topics失败')
@@ -112,5 +131,3 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>
