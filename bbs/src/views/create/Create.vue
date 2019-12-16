@@ -123,25 +123,27 @@ export default {
         content: content
       }
 
-      if (question !== null && question !== undefined && question.length !== 0) {
+      if (
+        question !== null &&
+        question !== undefined &&
+        question.length !== 0
+      ) {
         data.question = question
         data.reward = reward
       }
 
       let _this = this
-      this.axios
-        .put('/api/topic', data)
-        .then(res => {
-          if (res.data.status === 1) {
-            alert('create topic success!')
-            _this.$router.push({
-              name: 'topic',
-              params: { id: res.data.data.id }
-            })
-          } else {
-            console.log('create failed!')
-          }
-        })
+      this.axios.put('/api/topic', data).then(res => {
+        if (res.data.status === 1) {
+          alert('create topic success!')
+          _this.$router.push({
+            name: 'topic',
+            params: { id: res.data.data.id }
+          })
+        } else {
+          console.log('create failed!')
+        }
+      })
     }
   }
 }
