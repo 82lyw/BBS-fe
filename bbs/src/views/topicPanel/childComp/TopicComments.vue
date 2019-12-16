@@ -21,7 +21,7 @@
             >{{ comment.location }}楼 • {{ getDate(comment.createTime) }}</a
           >
           <button
-            v-if="!isHostComment(comment.userId) && !haveWinner() && isHost"
+            v-if="!isHostComment(comment.userId) && !haveWinner && isHost()"
             v-on:click="setWinner(comment.userId)"
             class="winnner-button"
           >
@@ -60,11 +60,15 @@ export default {
     topicComments: Array,
     topicHeader: Object
   },
-  computed: {},
-  data() {
-    return {
-      isHost: this.$store.state.info.id === this.topicHeader.createUserId,
-      winnerUsername: this.topicHeader.demand.winnerUsername
+  computed: {
+    winnerUsername: function() {
+      console.log('demand')
+      console.log(this.topicHeader.demand)
+      if (this.topicHeader.demand !== undefined) {
+        console.log(this.topicHeader.demand.winnerUsername)
+        return this.topicHeader.demand.winnerUsername
+      }
+      return null
     }
   },
   methods: {
@@ -136,25 +140,30 @@ export default {
       this.axios.post('/api/demand', data).then(resp => {
         console.log(resp.message)
         if (resp.status === 1) {
-          _this.winnerUsername = resp.winnerUsername
+          _this.topicHeader.demand = resp.data
         }
       })
     },
-    haveWinner() {
+    isHostComment(userId) {
+      return userId === this.$store.state.info.id
+    },
+    isHost() {
+      return this.$store.state.info.id === this.topicHeader.createUserId
+    },
+    haveWinner: function() {
+      console.log('test')
+      console.log(this.winnerUsername)
+      console.log('test')
       console.log(
         this.winnerUsername !== null &&
           this.winnerUsername !== undefined &&
           this.winnerUsername.length !== 0
       )
-      console.log(this.isHost)
       return (
         this.winnerUsername !== null &&
         this.winnerUsername !== undefined &&
         this.winnerUsername.length !== 0
       )
-    },
-    isHostComment(userId) {
-      return userId === this.$store.state.info.id
     }
   }
 }
