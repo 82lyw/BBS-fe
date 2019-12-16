@@ -16,10 +16,17 @@
             <img src="../../../assets/img/svg/agree-normal.svg" alt="" />
             <span>{{ comment.prefer }}</span>
           </div> -->
-          <a href="" class="replyer">{{ comment.userName }}</a>
+          <a href="" class="replyer">{{ comment.username }}</a>
           <a href="" class="reply-timer"
             >{{ comment.location }}楼 • {{ getDate(comment.createTime) }}</a
           >
+          <button
+            v-if="!isHostComment(comment.userId) && !haveWinner && isHost()"
+            v-on:click="setWinner(comment.userId)"
+            class="winnner-button"
+          >
+            选择
+          </button>
           <p class="reply-content">{{ comment.content }}</p>
         </div>
       </template>
@@ -53,7 +60,17 @@ export default {
     topicComments: Array,
     topicHeader: Object
   },
-  computed: {},
+  computed: {
+    winnerUsername: function() {
+      console.log('demand')
+      console.log(this.topicHeader.demand)
+      if (this.topicHeader.demand !== undefined) {
+        console.log(this.topicHeader.demand.winnerUsername)
+        return this.topicHeader.demand.winnerUsername
+      }
+      return null
+    }
+  },
   methods: {
     updateComment() {
       let _this = this
@@ -108,6 +125,45 @@ export default {
             _this.updateComment()
           }
         })
+    },
+    // isHost() {
+    //   return this.$store.state.info.id === this.topicHeader.createUserId
+    // },
+    setWinner(winnerId) {
+      let topicId = this.topicHeader.id
+      let data = {
+        topicId: topicId,
+        winnerId: winnerId
+      }
+
+      let _this = this
+      this.axios.post('/api/demand', data).then(resp => {
+        console.log(resp.message)
+        if (resp.status === 1) {
+          _this.topicHeader.demand = resp.data
+        }
+      })
+    },
+    isHostComment(userId) {
+      return userId === this.$store.state.info.id
+    },
+    isHost() {
+      return this.$store.state.info.id === this.topicHeader.createUserId
+    },
+    haveWinner: function() {
+      console.log('test')
+      console.log(this.winnerUsername)
+      console.log('test')
+      console.log(
+        this.winnerUsername !== null &&
+          this.winnerUsername !== undefined &&
+          this.winnerUsername.length !== 0
+      )
+      return (
+        this.winnerUsername !== null &&
+        this.winnerUsername !== undefined &&
+        this.winnerUsername.length !== 0
+      )
     }
   }
 }
@@ -158,5 +214,8 @@ export default {
 .submit {
   @include basic-button;
   margin-top: 10px;
+}
+.winnner-button {
+  float: right;
 }
 </style>
