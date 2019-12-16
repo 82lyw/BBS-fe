@@ -65,6 +65,7 @@ export default {
       this.axios.get('/api/comment/' + _this.topic_id).then(res => {
         if (res.data.status) {
           console.log(res.data.data)
+          console.log(res.data.data)
           _this.topicComments = res.data.data
           console.log(_this.topicComments)
         } else {
@@ -73,7 +74,8 @@ export default {
       })
     },
     haveDemand() {
-      let content = this.topicHeader.demandContent
+      console.log(this.topicHeader.demand)
+      let content = this.topicHeader.demand
       return content !== null && content !== undefined && content.length !== 0
     }
   }
