@@ -11,6 +11,8 @@
           <li @click="$router.push('/profile/info')">修改个人资料</li>
           <li class="exclude-li">/</li>
           <li @click="$router.push('/profile/mod')">修改密码</li>
+          <li class="exclude-li">/</li>
+          <li>修改帖子</li>
         </ul>
       </template>
       <template>

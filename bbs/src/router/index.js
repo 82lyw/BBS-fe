@@ -20,6 +20,7 @@ const ProfileAvatar = () => import('@views/profile/ProfileAvatar.vue')
 const ProfileMain = () => import('@views/profile/ProfileMain.vue')
 const ProfileInfo = () => import('@views/profile/ProfileInfo.vue')
 const ProfileMod = () => import('@views/profile/ProfileMod.vue')
+const ProfileUpDate = () => import('@views/profile/ProfileUpdate.vue')
 
 const Admin = () => import('@views/admin/Admin.vue')
 const AdminMain = () => import('@views/admin/AdminMain.vue')
@@ -123,6 +124,14 @@ const routes = [
         component: ProfileMod,
         meta: {
           title: '修改密码'
+        }
+      },
+      {
+        path: 'update/:id',
+        name: 'update',
+        component: ProfileUpDate,
+        meta: {
+          title: '编辑帖子'
         }
       }
     ]

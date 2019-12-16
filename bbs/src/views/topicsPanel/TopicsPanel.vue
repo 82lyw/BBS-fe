@@ -30,6 +30,7 @@ export default {
     TopicsList,
     TopicsNav,
     Page
+
     // Pagination
   },
   data() {
