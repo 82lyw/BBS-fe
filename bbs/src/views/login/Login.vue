@@ -72,6 +72,7 @@ export default {
             console.log(res.data)
             this.$store.commit('setUser', _this.username)
             localStorage.setItem('token', res.data.token)
+            _this.getProfile()
             _this.$router.push('/')
           } else {
             console.log('登录失败')
@@ -80,6 +81,18 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    getProfile() {
+      let _this = this
+      this.axios.get('/api/user/profile').then(res => {
+        console.log(res.data.data)
+        if (res.data.status === 1) {
+          _this.user = res.data.data
+          this.$store.commit('setUserInfo', _this.user)
+        } else {
+          alert('获取个人信息失败！')
+        }
+      })
     }
   }
 }
