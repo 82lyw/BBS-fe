@@ -34,13 +34,18 @@
               <button
                 v-if="!topic.boutique"
                 class="primary"
-                @click="addBoutique(topic.id, index)"
+                @click="changeBoutique(topic.id, index)"
               >
                 加精
               </button>
               <div v-else>
                 <button class="success is-plain">精华</button>
-                <button class="warning">撤消</button>
+                <button
+                  class="warning"
+                  @click="changeBoutique(topic.id, index)"
+                >
+                  撤消
+                </button>
               </div>
             </td>
             <td>
@@ -146,12 +151,12 @@ export default {
         params: { id: id }
       })
     },
-    addBoutique(id, i) {
+    changeBoutique(id, i) {
       this.axios.post('/api/admin/boutique?id=' + id).then(res => {
         if (res.data.status === 1) {
-          alert('加精成功！')
+          alert('操作成功！')
           // this.getTopic()
-          this.topics[i].boutique = true
+          this.topics[i].boutique = !this.topics[i].boutique
         }
       })
     },
