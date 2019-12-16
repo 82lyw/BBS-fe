@@ -4,15 +4,15 @@
       <span>悬赏问答：</span>
       <div v-if="haveWinner()" class="reward-box">
         <span>
-          {{winner}}
+          {{ winner }}
         </span>
-        <img src="@assets/img/winner.png">
+        <img src="@assets/img/winner.png" />
       </div>
       <div v-else class="reward-box">
         <span>
-          {{reward}}
+          {{ reward }}
         </span>
-        <img src="@assets/img/reward.png">
+        <img src="@assets/img/reward.png" />
       </div>
     </div>
     <div class="text-area" v-html="content"></div>
@@ -21,24 +21,23 @@
 
 <script>
 export default {
-    name: 'topic-demand',
-    props: {
-      topicHeader: Object
-    },
-    data() {
-      return {
-        reward: this.topicHeader.demandReward,
-        content: this.topicHeader.demandContent,
-        winner: this.topicHeader.winnerUsername
-      }
-    },
-    methods: {
-      haveWinner() {
-        let winner = this.topicHeader.winnerUsername
-        console.log(winner)
-        return winner != null  && winner !== undefined && winner.length !== 0
-      }
+  name: 'topic-demand',
+  props: {
+    topicHeader: Object
+  },
+  data() {
+    return {
+      reward: this.topicHeader.demand.reward,
+      content: this.topicHeader.demand.content,
+      winner: this.topicHeader.demand.winnerUsername
     }
+  },
+  methods: {
+    haveWinner() {
+      let winner = this.winner
+      return winner != null && winner !== undefined && winner.length !== 0
+    }
+  }
 }
 </script>
 

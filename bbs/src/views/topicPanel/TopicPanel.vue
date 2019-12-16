@@ -3,7 +3,7 @@
     <basic-panel :isHeader="false">
       <topic-header :topicHeader="topicHeader" />
       <topic-content :topicContent="topicContent" />
-      <topic-demand v-if="haveDemand()" :topicHeader="topicHeader"/>
+      <topic-demand v-if="haveDemand()" :topicHeader="topicHeader" />
     </basic-panel>
 
     <topic-comments
